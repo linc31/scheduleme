@@ -1,26 +1,69 @@
-var axios = require('axios');
+// getAllPatients() {
+//   return axios.get('/getAllPatients');
+// }
 
-var helper = {
+// getCurrentUser() {
+//   return axios.get('/user');
+// }
 
-  getAllPatients() {
-    return axios.get('/getAllPatients');
-  },
+// getPatient(id) {
+//   return axios.get('/getPatient' + id)
+// }
 
-  getCurrentUser() {
-    return axios.get('/user');
-  },
+// getPatientSchedules() {
+//   return axios.get('/getPatientSchedules')
+//   .then(function(res){
+//     return res;
+//   })
+// }
 
-  getPatient(id) {
-    return axios.get('/getPatient' + id)
-  },
+// addPatientSchedule(patient_id, firstName, lastName, status) {
+//   return axios.post('/addPatientSchedule', {
+//     patient_id: patient_id,
+//     firstName: firstName,
+//     lastName: lastName,
+//     status: status
+//   });
+// }
 
-  getPatientSchedules() {
-    return axios.get('/getPatientSchedules')
-    .then(function(res){
-      return res;
-    })
-  },
+// updatePatientSchedule(ptSchedule) {
+//   return axios.put('/updateSchedule/' + ptSchedule._id, {
+//     patientSchedule: ptSchedule
+//   })
+// }
 
-}
+// addPatient(firstName, lastName, addressOne, city, state, zip, email, phone, status) {
+//   return axios.post('/addPatient', {
+//     firstName: firstName,
+//     lastName: lastName,
+//     addressOne: addressOne,
+//     city: city,
+//     state: state,
+//     zip: zip,
+//     email: email,
+//     phone: phone,
+//     status: status
+//   });
+// }
 
-module.exports = helper;
+// updatePatient(firstName, lastName, addressOne, city, state, zip, email, phone, status) {
+//   return axios.put('/updatePatient/', {
+//     firstName: firstName,
+//     lastName: lastName,
+//     addressOne: addressOne,
+//     city: city,
+//     state: state,
+//     zip: zip,
+//     email: email,
+//     phone: phone,
+//     status: status
+//   });
+// }
+
+// removePatient(id) {
+//   return axios.put('/removePatient/' + id);
+// }
+
+// removePatientSchedule(patient_id) {
+//   return axios.put('/removePatientSchedule/' + patient_id);
+// }

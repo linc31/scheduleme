@@ -2,15 +2,9 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var scheduleSchema = new Schema ({
-  patient_id: {
-    type: String
-  },
-  firstName: {
-    type: String
-  },
-  lastName: {
-    type: String
-  },
+  patient_id: String,
+  firstName: String,
+  lastName: String,
   monday: {
     type: String,
     default: ""
