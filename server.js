@@ -40,6 +40,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // API Routes
+app.use('/', oauth);
 
 // Catch all routes for SPA client-side routing
 app.get('/*', function(req, res) {
@@ -52,3 +53,5 @@ var port = process.env.PORT || 3001;
 app.listen(port, function() {
   console.log(`Express app running on port ${port}`)
 });
+
+module.exports = app;

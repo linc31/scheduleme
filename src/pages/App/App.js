@@ -5,13 +5,18 @@ import { Route, Switch, Link} from 'react-router-dom';
 import HomePage from '../HomePage/HomePage';
 import DoctorPage from '../DoctorPage/DoctorPage';
 import PatientPage from '../PatientPage/PatientPage';
+import Login from './../../components/Login/Login';
 
 class App extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
 
     }
+  }
+
+  handleLogin = () => {
+    this.props.history.push('/auth/google');
   }
 
   render() {
@@ -27,6 +32,11 @@ class App extends Component {
               }/>
               <Route exact path='/patient' render={(props) =>
                 <PatientPage />
+              }/>
+              <Route exact path='/auth' render={(props) =>
+                <Login 
+                  handleLogin={this.handleLogin}
+                  />
               }/>
           </Switch>
       </div>

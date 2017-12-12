@@ -7,7 +7,8 @@ const NavBar = (props) => {
       <nav>
         <Link to="/">ScheduleME</Link> <br/>
         <Link to="/doctor">DocPage</Link> <br />
-        <Link to="/patient">PT Page</Link>
+        <Link to="/patient">PT Page</Link><br />
+        <Link to="/auth/google">Login</Link>
       </nav>
     </div>
   )
