@@ -1,69 +1,76 @@
-// getAllPatients() {
-//   return axios.get('/getAllPatients');
-// }
+var axios = require("axios");
 
-// getCurrentUser() {
-//   return axios.get('/user');
-// }
+var helper = {
 
-// getPatient(id) {
-//   return axios.get('/getPatient' + id)
-// }
+getAllPatients() {
+  return axios.get('/getAllPatients');
+},
 
-// getPatientSchedules() {
-//   return axios.get('/getPatientSchedules')
-//   .then(function(res){
-//     return res;
-//   })
-// }
+getCurrentUser() {
+  return axios.get('/user');
+},
 
-// addPatientSchedule(patient_id, firstName, lastName, status) {
-//   return axios.post('/addPatientSchedule', {
-//     patient_id: patient_id,
-//     firstName: firstName,
-//     lastName: lastName,
-//     status: status
-//   });
-// }
+getPatient(id) {
+  return axios.get('/getPatient' + id)
+},
 
-// updatePatientSchedule(ptSchedule) {
-//   return axios.put('/updateSchedule/' + ptSchedule._id, {
-//     patientSchedule: ptSchedule
-//   })
-// }
+getPatientSchedules() {
+  return axios.get('/getPatientSchedules')
+  .then(function(res){
+    return res;
+  })
+},
 
-// addPatient(firstName, lastName, addressOne, city, state, zip, email, phone, status) {
-//   return axios.post('/addPatient', {
-//     firstName: firstName,
-//     lastName: lastName,
-//     addressOne: addressOne,
-//     city: city,
-//     state: state,
-//     zip: zip,
-//     email: email,
-//     phone: phone,
-//     status: status
-//   });
-// }
+addPatientSchedule(patient_id, firstName, lastName, status) {
+  return axios.post('/addPatientSchedule', {
+    patient_id: patient_id,
+    firstName: firstName,
+    lastName: lastName,
+    status: status
+  });
+},
 
-// updatePatient(firstName, lastName, addressOne, city, state, zip, email, phone, status) {
-//   return axios.put('/updatePatient/', {
-//     firstName: firstName,
-//     lastName: lastName,
-//     addressOne: addressOne,
-//     city: city,
-//     state: state,
-//     zip: zip,
-//     email: email,
-//     phone: phone,
-//     status: status
-//   });
-// }
+updatePatientSchedule(ptSchedule) {
+  return axios.put('/updateSchedule/' + ptSchedule._id, {
+    patientSchedule: ptSchedule
+  })
+},
 
-// removePatient(id) {
-//   return axios.put('/removePatient/' + id);
-// }
+addPatient(firstName, lastName, addressOne, city, state, zip, email, phone, status) {
+  return axios.post('/addPatient', {
+    firstName: firstName,
+    lastName: lastName,
+    addressOne: addressOne,
+    city: city,
+    state: state,
+    zip: zip,
+    email: email,
+    phone: phone,
+    status: status
+  });
+},
 
-// removePatientSchedule(patient_id) {
-//   return axios.put('/removePatientSchedule/' + patient_id);
-// }
+updatePatient(firstName, lastName, addressOne, city, state, zip, email, phone, status) {
+  return axios.put('/updatePatient/', {
+    firstName: firstName,
+    lastName: lastName,
+    addressOne: addressOne,
+    city: city,
+    state: state,
+    zip: zip,
+    email: email,
+    phone: phone,
+    status: status
+  });
+},
+
+removePatient(id) {
+  return axios.put('/removePatient/' + id);
+},
+
+removePatientSchedule(patient_id) {
+  return axios.put('/removePatientSchedule/' + patient_id);
+}
+}
+
+export default helper;

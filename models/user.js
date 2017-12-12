@@ -7,10 +7,8 @@ const SALT_ROUNDS = 6;
 
 var userSchema = new Schema({
   name: {type: String, required: true},
-  email: {type: String, required: true},
-  googleId: String,
-  googleToken: String,
-  userType: String, 
+  email: {type: String, required: true, lowercase: true, unique: true},
+  password: String
 }, {
   timestamps: true
 });
@@ -42,7 +40,5 @@ userSchema.methods.comparePassword = function(tryPassword, cb) {
     cb(null, isMatch);
   });
 };
-
-userSchema.plugin(passportLocalMongoose);
 
 module.exports = mongoose.model('User', userSchema);

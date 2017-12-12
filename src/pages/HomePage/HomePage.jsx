@@ -1,11 +1,10 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+// import {Link} from 'react-router-dom';
+import NavBar from '../../components/NavBar/NavBar';
 
 const HomePage = (props) => {
   return (
-    <div>
-      <h1>ScheduleME</h1>
-    </div>
+    <NavBar user={props.user} handleLogout={props.handleLogout} />
   )
 }
 

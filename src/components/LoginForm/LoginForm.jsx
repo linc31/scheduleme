@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import userService from '../../utils/userService';
 
-class Login extends Component {
+class LoginForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -56,4 +56,4 @@ class Login extends Component {
   }
 };
 
-export default Login;
+export default LoginForm;

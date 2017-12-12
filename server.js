@@ -6,9 +6,6 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var session = require('express-session');
 var passport = require('passport');
-var bcrypt = require('bcrypt');
-
-const SALT_ROUNDS = 6;
 
 // Initialize express
 var app = express ();
@@ -46,6 +43,7 @@ app.use(passport.session());
 // API Routes
 app.use('/', oauth);
 
+app.use('/api/users', require('./routes/api/users'))
 // Catch all routes for SPA client-side routing
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
@@ -56,18 +54,6 @@ var port = process.env.PORT || 3001;
 
 app.listen(port, function() {
   console.log(`Express app running on port ${port}`)
-});
-
-userSchema.pre('save', function(next) {
-  var user = this;
-  if (!user.isModified('password')) return next();
-  // password has been changed - salt and hash it
-  bcrypt.hash(user.password, SALT_ROUNDS, function(err, hash) {
-    if (err) return next(err);
-    // override the user provided password with the hash
-    user.password = hash;
-    next();
-  });
 });
 
 module.exports = app;

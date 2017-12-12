@@ -18,7 +18,7 @@ function login(req, res) {
     user.comparePassword(req.body.pw, (err, isMatch) => {
       if (isMatch) {
         var token = createJWT(user);
-        res.json({token: createJWT(user)});
+        res.json({token});
       } else {
         return res.status(401).json({err: 'bad credentials'});
       }
