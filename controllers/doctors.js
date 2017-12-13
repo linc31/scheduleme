@@ -14,13 +14,3 @@ function checkUser(req, res) {
   const user = req.session.user;
   if (!user) return res.redirect('/');
 }
-
-function getAllPatients(req, res) {
-  patient.find({ "active": 1}).exec(function(err, doc) {
-    if (err) {
-      console.log(err);
-    } else {
-      res.send(doc);
-    }
-  });
-};

@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import helpers from '../../utils/helpers';
-import NavBar from '../../components/NavBar/NavBar';
-
 
 class DoctorPage extends Component {
   constructor(props) {

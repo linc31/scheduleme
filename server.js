@@ -40,8 +40,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// API Routes
-app.use('/', oauth);
+// Mount patient route
+app.use('/api/patients', require('./routes/api/patients'))
+
 
 app.use('/api/users', require('./routes/api/users'))
 // Catch all routes for SPA client-side routing

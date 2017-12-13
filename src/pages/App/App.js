@@ -8,6 +8,8 @@ import PatientPage from '../PatientPage/PatientPage';
 import SignupPage from '../SignupPage/SignupPage';
 import LoginPage from '../LoginPage/LoginPage';
 import NavBar from '../../components/NavBar/NavBar';
+import ScheduleCreate from '../../components/ScheduleCreate/ScheduleCreate';
+import CreatePatient from '../../components/CreatePatient/CreatePatient';
 
 
 class App extends Component {
@@ -58,16 +60,20 @@ class App extends Component {
                 <PatientPage />
               }/>
               <Route exact path='/signup' render={(props) => 
-              <SignupPage
-                {...props}
-                handleSignup={this.handleSignup}
-              />
-            }/>
+                <SignupPage
+                  {...props}
+                  handleSignup={this.handleSignup} />
+              }/>
               <Route exact path='/login' render={(props) =>
                 <LoginPage 
                   {...props}
-                  handleLogin={this.handleLogin}
-                  />
+                  handleLogin={this.handleLogin} />
+              }/>
+              <Route exact path='/create/schedule' render={(props) =>
+                <ScheduleCreate />
+              }/>
+              <Route exact path='/create/patients' render={(props) =>
+                <CreatePatient />
               }/>
           </Switch>
           </div>

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 // import ScheduleView from '../../components/ScheduleView/ScheduleView';
-import schedulesAPI from '../../utils/schedulesAPI';
+// import schedulesAPI from '../../utils/schedulesAPI';
 
 class PatientPage extends Component {
   constructor() {

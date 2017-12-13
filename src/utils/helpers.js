@@ -37,7 +37,7 @@ updatePatientSchedule(ptSchedule) {
 },
 
 addPatient(firstName, lastName, addressOne, city, state, zip, email, phone, status) {
-  return axios.post('/addPatient', {
+  return axios.post('/api/patients/addPatient', {
     firstName: firstName,
     lastName: lastName,
     addressOne: addressOne,
@@ -62,6 +62,13 @@ updatePatient(firstName, lastName, addressOne, city, state, zip, email, phone, s
     phone: phone,
     status: status
   });
+},
+
+updatePatientName(patient_id, firstName, lastName) {
+  return axios.put('/updatePatientName' + patient_id, {
+    firstName: firstName,
+    lastName: lastName
+  })
 },
 
 removePatient(id) {
