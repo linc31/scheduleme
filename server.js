@@ -43,6 +43,9 @@ app.use(passport.session());
 // Mount patient route
 app.use('/api/patients', require('./routes/api/patients'))
 
+// Mount schedule route
+app.use('/api/schedules', require('./routes/api/schedules'))
+
 
 app.use('/api/users', require('./routes/api/users'))
 // Catch all routes for SPA client-side routing

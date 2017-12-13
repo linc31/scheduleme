@@ -5,6 +5,7 @@ var scheduleSchema = new Schema ({
   patient_id: String,
   firstName: String,
   lastName: String,
+  status: String,
   monday: {
     type: String,
     default: ""

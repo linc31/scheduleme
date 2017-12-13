@@ -91,8 +91,37 @@ class ScheduleCreate extends Component {
 
   render(props) {
     return (
-      <div>
-        yaapp
+      <div className='row'>
+        <div className='col m12'>
+          <div className='section'>
+            <h5>Schedule Editor</h5>
+            <table className='highlight'>
+              <thead>
+                <tr>
+                  <th data-field='name'>Name</th>
+                  <th data-field='name'>Monday</th>
+                  <th data-field='name'>Tuesday</th>
+                  <th data-field='name'>Wednesday</th>
+                  <th data-field='name'>Thursday</th>
+                  <th data-field='name'>Friday</th>
+                  <th data-field='name'>Saturday</th>
+                  <th data-field='name'>Sunday</th>
+                </tr>
+              </thead>
+              <tbody>
+              {/* {this.state.ptSchedules.map(sched => <tr key={sched._id}>
+                <td className='fullName' ref={this.state.ptSchedules[i]._id}>
+                {sched.firstName}{sched.lastName}</td>
+              </tr>)} */}
+              <td>
+                <div className='input-field schedule'>
+                  
+                </div>
+              </td>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     )
   }

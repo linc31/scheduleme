@@ -3,7 +3,11 @@ var axios = require("axios");
 var helper = {
 
 getAllPatients() {
-  return axios.get('/getAllPatients');
+  return axios.get('/api/patients/getAllPatients');
+  console.log('coming from axios GET ALL PATIENTS')
+  .then(function(res) {
+    res.json(res);
+  })
 },
 
 getCurrentUser() {
@@ -11,7 +15,7 @@ getCurrentUser() {
 },
 
 getPatient(id) {
-  return axios.get('/getPatient' + id)
+  return axios.get('/api/patients/getPatient' + id)
 },
 
 getPatientSchedules() {
@@ -47,11 +51,17 @@ addPatient(firstName, lastName, addressOne, city, state, zip, email, phone, stat
     email: email,
     phone: phone,
     status: status
-  });
+  })
+  .then(function(res) {
+    console.log('coming from axios ADD PATIENT', res)
+  })
+  .catch(function(err){
+    console.log(err)
+  })
 },
 
 updatePatient(firstName, lastName, addressOne, city, state, zip, email, phone, status) {
-  return axios.put('/updatePatient/', {
+  return axios.put('/api/patients/updatePatient/', {
     firstName: firstName,
     lastName: lastName,
     addressOne: addressOne,
@@ -61,18 +71,24 @@ updatePatient(firstName, lastName, addressOne, city, state, zip, email, phone, s
     email: email,
     phone: phone,
     status: status
-  });
+  })
+  .then(function(res) {
+    console.log('axios UPDATE PATIENT', res)
+  })
+  .catch(function(err){
+    console.log(err)
+  })
 },
 
 updatePatientName(patient_id, firstName, lastName) {
-  return axios.put('/updatePatientName' + patient_id, {
+  return axios.put('/api/patients/updatePatientName' + patient_id, {
     firstName: firstName,
     lastName: lastName
   })
 },
 
 removePatient(id) {
-  return axios.put('/removePatient/' + id);
+  return axios.put('/api/patients/removePatient/' + id);
 },
 
 removePatientSchedule(patient_id) {

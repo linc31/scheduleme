@@ -1,12 +1,14 @@
 var Patient = require('../models/patient');
 
 module.exports = {
-  addPatients,
-  updatePatients,
-  removePatients
+  addPatient,
+  updatePatient,
+  removePatients,
+  getPatients
 }
 
-function addPatients(req, res) {
+function addPatient(req, res) {
+  console.log('hitting add patients controllers');
   Patient.create({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
@@ -21,12 +23,13 @@ function addPatients(req, res) {
     if (err) {
       console.log(err);
     } else {
-      res.send(doc);
+      res.status(200).json(doc);
     }
   });
 }
 
-function updatePatients(req, res) {
+function updatePatient(req, res) {
+  console.log('hitting UPDATE pt controller');  
   Patient.findOneAndUpdate({ '_id': req.params.id }, {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
@@ -41,13 +44,13 @@ function updatePatients(req, res) {
     if (err) {
       console.log(err);
     } else {
-      res.send('Patient updated');
+      res.status(200).json(doc);
     }
   });
 }
 
 function removePatients(req, res) {
-  patient.findOneAndUpdate({ '_id': req.params.id }, {
+  patient.findOneAndRemove({ '_id': req.params.id }, {
     'active': 0 })
     .exec(function(err, doc) {
       if (err) {
@@ -59,12 +62,12 @@ function removePatients(req, res) {
 }
 
 
-// function addPatients(req, res) {
-//   Patient.find({ "active": 1}, function(err, doc) {
-//     if (err) {
-//       console.log(err);
-//     } else {
-//       res.send(doc);
-//     }
-//   });
-// }
+function getPatients(req, res) {
+  Patient.find({ "active": 1}, function(err, doc) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(doc);
+    }
+  });
+}

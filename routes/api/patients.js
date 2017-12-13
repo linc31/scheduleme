@@ -2,13 +2,14 @@ const express = require('express');
 const router = express.Router()
 var patientsCtrl = require('../../controllers/patients');
 
-router.post('/addPatient', isLoggedIn, patientsCtrl.addPatients)
-router.put('updatePatient/:id', isLoggedIn, patientsCtrl.updatePatients)
-router.put('/removePatient/:id', isLoggedIn, patientsCtrl.removePatients)
+router.get('/getPatient', patientsCtrl.getPatients)
+router.post('/addPatient', patientsCtrl.addPatient)
+router.put('/updatePatient/_id', patientsCtrl.updatePatient)
+router.put('/removePatient/:id', patientsCtrl.removePatients)
 
 module.exports = router;
 
-function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated()) return next();
-  res.redirect('/signup');
-}
+// function isLoggedIn(req, res, next) {
+//   if (req.isAuthenticated()) return next();
+//   res.redirect('/signup');
+// }

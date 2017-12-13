@@ -33,6 +33,7 @@ class CreatePatient extends Component {
     helpers.getAllPatients().then(function(res) {
       if (res !== this.state.allPatients) {
         this.setState({ allPatients: res.data });
+        console.log('get patient page')
         // this.activeButtons();
       }
     }.bind(this));
@@ -44,26 +45,29 @@ class CreatePatient extends Component {
 
   handleAddForm = (event) => {
     event.preventDefault();
-    helpers.addPatient(this.state.firstName, this.state.lastName, this.state.addressOne, this.state.city, this.state.state, this.state.zip, this.state.email, this.state.phone, this.state.status).then(function(res) {
+    helpers.addPatient(this.state.firstName, this.state.lastName, this.state.addressOne, this.state.city, this.state.state, this.state.zip, this.state.email, this.state.phone, this.state.status)
+    
+    helpers.addPatientSchedule(this.state.patient_id, this.state.firstName, this.state.lastName)
+    .then(function(res) {
+      this.clearStates();
+    }.bind(this))
+    .then(function(res) {
       this.state.patient_id = res.data._id;
 
-      helpers.addPatientSchedule(this.state.patient_id, this.state.firstName, this.state.lastName)
-      .then(function(res) {
-        this.clearStates();
-      }.bind(this));
-
     }.bind(this));
-    // Materialize.toast('Patient added', 3000);
+    // alert('Patient added', 3000);
     this.clearForm();
     this.getPatients();
   }
 
   handleUpdateForm = (event) => {
     event.preventDefault();
-    helpers.updatePatient(this.state.selectedPts, this.state.firstName, this.state.lastName, this.state.addressOne, this.state.city, this.state.state, this.state.zip, this.state.email, this.state.phone, this.state.status).then(function(res) {
-    }.bind(this));
+    helpers.updatePatient(this.state.selectedPts, this.state.firstName, this.state.lastName, this.state.addressOne, this.state.city, this.state.state, this.state.zip, this.state.email, this.state.phone, this.state.status)
+    // .then(function(res) {
+    // }.bind(this))
 
-    helpers.updatePatientName(this.state.patient_id, this.state.firstName, this.state.lastName).then(function(res) {
+    helpers.updatePatientName(this.state.patient_id, this.state.firstName, this.state.lastName)
+    .then(function(res) {
       this.clearStates();
     }.bind(this));
     // Materialize.toast('Patient updated', 3000);
@@ -190,7 +194,7 @@ class CreatePatient extends Component {
                 <div className='input-field col m6 s12'>
                   <input 
                     placeholder='Last Name'
-                    name='lasttName'
+                    name='lastName'
                     type='text'
                     className='validate'
                     value={this.state.lastName}
@@ -278,7 +282,7 @@ class CreatePatient extends Component {
               </div>
               <div className='row'>
                 <div className='col s4'>
-                    <button ref='addPatient' className='btn btn-large waves-effect waves-light green accent-3' type='submit' value='Submit'>Add
+                    <button ref='addPatient' className='btn btn-large waves-effect waves-light green accent-3' onSubmit={this.handleAddForm} type='submit' value='Submit'>Add
                         <i className='material-icons right'>person_add</i>
                     </button>
                 </div>
