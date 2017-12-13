@@ -22,8 +22,7 @@ const NavBar = (props) => {
         <Link className='brand-logo center' to="/">ScheduleME</Link>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li><a href="/create/patients">Manage Patients<i className="material-icons right">group</i></a></li>
-        <li><a href="badges.html">Schedule<i className="material-icons right">insert_invitation</i></a></li>
-        <li><a href="collapsible.html">JavaScript</a></li>
+        <li><a href="/create/schedule">Schedule<i className="material-icons right">insert_invitation</i></a></li>
       </ul>
         {nav}
         {/* <Link to="/doctor">DocPage</Link> */}
