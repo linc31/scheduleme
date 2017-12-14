@@ -45,11 +45,16 @@ function updatePatient(req, res) {
     email: req.body.email,
     phone: req.body.phone,
     status: req.body.status
-  }, function(err) {
+  }, function(err, doc) {
     if (err) {
       console.log(err);
     } else {
+      User.findById(req.user._id, function(err, user) {
+        console.log('req.user', doc)
+        user.patients.push(doc._id);
+        user.save();
       res.status(200).json(doc);
+      });
     }
   });
 }

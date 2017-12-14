@@ -102,7 +102,7 @@ class ScheduleCreate extends Component {
             <table className='highlight'>
               <thead>
                 <tr>
-                  <th data-field='name'>Name</th>
+                  <th data-field='name'>Name</th>&nbsp;&nbsp;
                   <th data-field='name'>Monday</th>
                   <th data-field='name'>Tuesday</th>
                   <th data-field='name'>Wednesday</th>
@@ -112,90 +112,59 @@ class ScheduleCreate extends Component {
                   <th data-field='name'>Sunday</th>
                 </tr>
               </thead>
-              {/* <tbody>
-              {this.state.ptSchedules.map(function(schedules, i) {
-              return (
-                  <tr key={i}>
-                      <td className="fullName">
-                          {schedules.firstName} {schedules.lastName}
-                      </td>
-                      <td className="schedule">
-                          {schedules.monday}
-                      </td>
-                      <td>
-                          {schedules.tuesday}
-                      </td>
-                      <td>
-                          {schedules.wednesday}
-                      </td>
-                      <td>
-                          {schedules.thursday}
-                      </td>
-                      <td>
-                          {schedules.friday}
-                      </td>
-                      <td>
-                          {schedules.saturday}
-                      </td>
-                      <td>
-                          {schedules.sunday}
-                      </td>
-                  </tr>
-              );
-          }, this)}
-          </tbody> */}
-          <td>
-            <div>
+          {/* <td> */}
+            
             {this.props.patients.map(pt =>
                   <tr key={pt}>
-                    <td><Link to={`updatePatient/${pt._id}`}>{pt.isbn}</Link></td>
-                    <td>{pt.firstName}</td>
-                    <td>{pt.lastName}</td>
-                  </tr>
-                )}
+                    {/* <td><Link to={`updatePatient/${pt._id}`}>{pt.isbn}</Link></td> */}
+                    <td>{pt.firstName} {pt.lastName}</td>&nbsp;&nbsp;
+                  
+          {/* </td> */}
+          <td className="">
+            <div className="input-field schedule">
+              <input type='text' className='timepicker' name='on' type='time' onChange={function(e, value) {}} />
             </div>
           </td>
           <td className="">
           <div className="input-field schedule">
-          <input type='text' className='timepicker' name='on' type='time' onChange={function(e, value) {}} />
+            <input type='text' className='timepicker' name='on' type='time' onChange={function(e, value) {}} />
           </div>
-      </td>
-          <td>
-            <div>
-              tues 10am
-            </div>
           </td>
-          <td>
-            <div>
-              weds 10am
-            </div>
+          <td className="">
+          <div className="input-field schedule">
+            <input type='text' className='timepicker' name='on' type='time' onChange={function(e, value) {}} />
+          </div>
           </td>
-          <td>
-            <div>
-              sursday 10am
-            </div>
+          <td className="">
+          <div className="input-field schedule">
+            <input type='text' className='timepicker' name='on' type='time' onChange={function(e, value) {}} />
+          </div>
           </td>
-          <td>
-            <div>
-              friyay 10am
-            </div>
+          <td className="">
+          <div className="input-field schedule">
+            <input type='text' className='timepicker' name='on' type='time' onChange={function(e, value) {}} />
+          </div>
           </td>
-          <td>
-            <div>
-              satday 10am
-            </div>
+          <td className="">
+          <div className="input-field schedule">
+            <input type='text' className='timepicker' name='on' type='time' onChange={function(e, value) {}} />
+          </div>
           </td>
-          <td>
-            <div>
-              sunday 10am
-            </div>
+          <td className="">
+          <div className="input-field schedule">
+            <input type='text' className='timepicker' name='on' type='time' onChange={function(e, value) {}} />
+          </div>
           </td>
+          
           <td>
+          &nbsp;&nbsp;&nbsp;&nbsp;
             <button className="addSchedule" onClick={this.handleUpdatePatientSchedule.bind(this)} className="btn btn-small waves-effect waves-light green accent-4">Add</button>
-          </td>
-          <td>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button className="clearSchedule" onClick={this.handleClearSchedule.bind(this)} className="btn btn-small waves-effect waves-light blue accent-4">Clear</button>
           </td>
+          </tr>
+                )}
+
             </table>
           </div>
         </div>

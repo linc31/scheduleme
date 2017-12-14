@@ -23,23 +23,31 @@ getPatient(id) {
 },
 
 getPatientSchedules() {
-  return axios.get('/getPatientSchedules')
+  return axios.get('/api/schedules/getPatientSchedules')
   .then(function(res){
     return res;
   })
 },
 
 addPatientSchedule(patient_id, firstName, lastName, status) {
-  return axios.post('/addPatientSchedule', {
+  return axios.post('/api/schedules/addPatientSchedule', {
     patient_id: patient_id,
     firstName: firstName,
     lastName: lastName,
     status: status
-  });
+  }, {
+    headers: { Authorization: "Bearer " + tokenService.getToken() }
+  })
+  .then(function(res) {
+    console.log(res)
+  })
+  .catch(function(err){
+    console.log(err)
+  })
 },
 
 updatePatientSchedule(ptSchedule) {
-  return axios.put('/updateSchedule/' + ptSchedule._id, {
+  return axios.put('/api/schedules/updateSchedule/' + ptSchedule._id, {
     patientSchedule: ptSchedule
   })
 },
@@ -109,7 +117,7 @@ removePatient(id) {
 }, 
 
 removePatientSchedule(patient_id) {
-  return axios.put('/removePatientSchedule/' + patient_id);
+  return axios.put('/api/schedules/removePatientSchedule/' + patient_id);
   }
 }
 

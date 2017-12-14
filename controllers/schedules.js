@@ -8,14 +8,17 @@ module.exports = {
 }
 
 function getSchedules(req, res) {
+  Patient.findById(req.patient_id).then(pt => {
   Schedule.find({ 'active': 1}, function(err, doc) {
     if (err) {
       console.log(err);
       res.send(err);
     } else {
+      Patient.
       res.send(doc);
     }
-  })
+  });
+});
 }
 
 function addSchedules(req, res) {

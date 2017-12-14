@@ -43,7 +43,6 @@ class CreatePatient extends Component {
     helpers.addPatient(this.state.firstName, this.state.lastName, this.state.addressOne, this.state.city, this.state.state, this.state.zip, this.state.email, this.state.phone, this.state.status)
     
     // helpers.addPatientSchedule(this.state.patient_id, this.state.firstName, this.state.lastName)
-    
     .then((res) => {
       this.props.reloadPatients();
     })
@@ -58,10 +57,10 @@ class CreatePatient extends Component {
     event.preventDefault();
     helpers.updatePatient(this.state.selectedPts, this.state.firstName, this.state.lastName, this.state.addressOne, this.state.city, this.state.state, this.state.zip, this.state.email, this.state.phone, this.state.status)
     .then(function(res) {
-      this.clearStates();
+      this.props.reloadPatients();
     }.bind(this))
     .then(function(res) {
-      this.props.reloadPatients();
+      this.clearStates();
     }.bind(this));
     // alert('Patient added', 3000);
     this.clearForm();
@@ -84,27 +83,28 @@ class CreatePatient extends Component {
     helpers.removePatientSchedule(this.state.patient_id).then(function(res) {
       this.clearStates();
     }.bind(this));
-    // Materialize.toast('Patient removed', 3000);
     this.clearForm();
   }
 
-  clickPatient = (event) => {
+  clickPatient = (event, id) => {
     this.setState({selectedPts: event.target.id}, function() {
-      for (var i = 0; i < this.state.allPatients.length; i++) {
-        if (this.state.allPatients[i]._id === this.state.selectedPts) {
+      for (var i = 0; i < this.props.patients.length; i++) {
+        console.log('patients id', id)
+        this.setState({selectedPts:id})
+        if (this.props.patients[i]._id === id) {
           this.setState({
-            firstName: this.state.allPatients[i].firstName,
-            lastName: this.state.allPatients[i].lastName,
-            addressOne: this.state.allPatients[i].addressOne,
-            city: this.state.allPatients[i].city,
-            state: this.state.allPatients[i].state,
-            zip: this.state.allPatients[i].zip,
-            email: this.state.allPatients[i].email,
-            phone: this.state.allPatients[i].phone,
-            status: this.state.allPatients[i].status,
+            firstName: this.props.patients[i].firstName,
+            lastName: this.props.patients[i].lastName,
+            addressOne: this.props.patients[i].addressOne,
+            city: this.props.patients[i].city,
+            state: this.props.patients[i].state,
+            zip: this.props.patients[i].zip,
+            email: this.props.patients[i].email,
+            phone: this.props.patients[i].phone,
+            status: this.props.patients[i].status,
             patient_id: this.state.selectedPts
           });
-          // this.activeButtons();
+          // this.props.reloadPatients();
         } 
       }
     })
@@ -143,12 +143,12 @@ class CreatePatient extends Component {
   }
 
   // Restrict access to update or remove an empty form
-  activeButtons = () => {
-    if (this.state.selectedPts === "") {
-      this.refs.addPatient.setAttribute('class', 'highlight')
-      this.refs.updatePatient.setAttribute('class', 'highlight')
-    }
-  }
+  // activeButtons = () => {
+  //   if (this.state.selectedPts === "") {
+  //     this.refs.addPatient.setAttribute('class', 'highlight')
+  //     this.refs.updatePatient.setAttribute('class', 'highlight')
+  //   }
+  // }
 
   render(props) {
     return (
@@ -166,14 +166,16 @@ class CreatePatient extends Component {
                   <strong>New Patient<i className='material-icons'>add</i></strong>
                 </td>
               </tr>
+
+
                 {this.props.patients.map(pt =>
-                  <tr key={pt}>
-                    <Link to={`updatePatient/${pt._id}`}> 
-                      <td>{pt.firstName}</td>
-                      <td>{pt.lastName}</td>
-                    </Link>
+                  <tr>
+                    <td key={pt._id} onClick={(e) => { this.clickPatient(e, pt._id) }}>
+                      {pt.firstName} {pt.lastName}</td>
                   </tr>
                 )}
+
+
             </tbody>
           </table>
         </div>
