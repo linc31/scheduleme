@@ -55,7 +55,7 @@ addPatient(firstName, lastName, addressOne, city, state, zip, email, phone, stat
     email: email,
     phone: phone,
     status: status
-  },  {
+  }, {
     headers: { Authorization: "Bearer " + tokenService.getToken() }
   })
   .then(function(res) {
@@ -77,6 +77,8 @@ updatePatient(id, firstName, lastName, addressOne, city, state, zip, email, phon
     email: email,
     phone: phone,
     status: status
+  }, {
+    headers: { Authorization: "Bearer " + tokenService.getToken() }
   })
   .then(function(res) {
     console.log('axios UPDATE PATIENT', res)
@@ -90,16 +92,25 @@ updatePatientName(patient_id, firstName, lastName) {
   return axios.put('/api/patients/updatePatientName' + patient_id, {
     firstName: firstName,
     lastName: lastName
+  }, {
+    headers: { Authorization: "Bearer " + tokenService.getToken() }
+  })
+  .then(function(res) {
+  })
+  .catch(function(err){
+    console.log(err)
   })
 },
 
 removePatient(id) {
-  return axios.put('/api/patients/removePatient/' + id);
-},
+  return axios.put('/api/patients/removePatient/' + id, {
+    headers: { Authorization: "Bearer " + tokenService.getToken() }
+  });
+}, 
 
 removePatientSchedule(patient_id) {
   return axios.put('/removePatientSchedule/' + patient_id);
-}
+  }
 }
 
 export default helper;

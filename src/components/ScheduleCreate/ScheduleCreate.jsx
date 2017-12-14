@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import helpers from '../../utils/helpers';
+import {Link} from 'react-router-dom';
 
 class ScheduleCreate extends Component {
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {};
   }
 
   getInitialState = () => {
@@ -29,6 +30,8 @@ class ScheduleCreate extends Component {
         this.setState({ptSchedules: res.data})
       }
     }.bind(this));
+
+    
   }
 
   handleUserChange = (idx, event) => {
@@ -88,6 +91,7 @@ class ScheduleCreate extends Component {
       selectedPtId: ''
     })
   }
+  
 
   render(props) {
     return (
@@ -142,14 +146,20 @@ class ScheduleCreate extends Component {
           </tbody> */}
           <td>
             <div>
-              name here
+            {this.props.patients.map(pt =>
+                  <tr key={pt}>
+                    <td><Link to={`updatePatient/${pt._id}`}>{pt.isbn}</Link></td>
+                    <td>{pt.firstName}</td>
+                    <td>{pt.lastName}</td>
+                  </tr>
+                )}
             </div>
           </td>
-          <td>
-            <div>
-              monday 10am
-            </div>
-          </td>
+          <td className="">
+          <div className="input-field schedule">
+          <input type='text' className='timepicker' name='on' type='time' onChange={function(e, value) {}} />
+          </div>
+      </td>
           <td>
             <div>
               tues 10am

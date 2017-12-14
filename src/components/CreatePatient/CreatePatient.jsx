@@ -30,11 +30,33 @@ class CreatePatient extends Component {
     this.setState({[event.target.name]: event.target.value});
   }
 
+  handleSubmit = (e) => {
+    const newPatient = {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName
+    }
+    this.clearForm();
+  }
+
   handleAddForm = (event) => {
-    event.preventDefault();
+    event.preventDefault(); 
     helpers.addPatient(this.state.firstName, this.state.lastName, this.state.addressOne, this.state.city, this.state.state, this.state.zip, this.state.email, this.state.phone, this.state.status)
     
-    helpers.addPatientSchedule(this.state.patient_id, this.state.firstName, this.state.lastName)
+    // helpers.addPatientSchedule(this.state.patient_id, this.state.firstName, this.state.lastName)
+    
+    .then((res) => {
+      this.props.reloadPatients();
+    })
+    .then(res => {
+      this.handleSubmit();
+      this.clearStates();
+    })
+    // alert('Patient added', 3000);
+  }
+
+  handleUpdateForm = (event) => {
+    event.preventDefault();
+    helpers.updatePatient(this.state.selectedPts, this.state.firstName, this.state.lastName, this.state.addressOne, this.state.city, this.state.state, this.state.zip, this.state.email, this.state.phone, this.state.status)
     .then(function(res) {
       this.clearStates();
     }.bind(this))
@@ -44,20 +66,16 @@ class CreatePatient extends Component {
     // alert('Patient added', 3000);
     this.clearForm();
   }
-
-  handleUpdateForm = (event) => {
-    event.preventDefault();
-    helpers.updatePatient(this.state.selectedPts, this.state.firstName, this.state.lastName, this.state.addressOne, this.state.city, this.state.state, this.state.zip, this.state.email, this.state.phone, this.state.status)
     // .then(function(res) {
     // }.bind(this))
 
     // helpers.updatePatientName(this.state.patient_id, this.state.firstName, this.state.lastName)
-    .then(function(res) {
-      this.clearStates();
-    }.bind(this));
-    // Materialize.toast('Patient updated', 3000);
-    this.clearForm();
-  }
+  //   .then(function(res) {
+  //     this.clearStates();
+  //   }.bind(this));
+  //   // Materialize.toast('Patient updated', 3000);
+  //   this.clearForm();
+  // }
 
   handleRemoveForm = (event) => {
     event.preventDefault();
@@ -149,21 +167,13 @@ class CreatePatient extends Component {
                 </td>
               </tr>
                 {this.props.patients.map(pt =>
-                  <tr>
-                    <td><Link to={`updatePatient/${pt._id}`}>{pt.isbn}</Link></td>
-                    <td>{pt.firstName}</td>
-                    <td>{pt.lastName}</td>
+                  <tr key={pt}>
+                    <Link to={`updatePatient/${pt._id}`}> 
+                      <td>{pt.firstName}</td>
+                      <td>{pt.lastName}</td>
+                    </Link>
                   </tr>
                 )}
-              {/* {this.state.allPatients.map(function(pt, i) {
-                return (
-                    <tr key={i}>
-                        <td onClick={this.clickPatient} ref={this.state.allPatients[i]._id}>
-                            {pt.firstName} {pt.lastName}
-                        </td>
-                    </tr>
-                );
-            }, this)} */}
             </tbody>
           </table>
         </div>
@@ -272,7 +282,7 @@ class CreatePatient extends Component {
               </div>
               <div className='row'>
                 <div className='col s4'>
-                    <button ref='addPatient' className='btn btn-large waves-effect waves-light green accent-3' onSubmit={this.handleAddForm} type='submit' value='Submit'>Add
+                    <button ref='addPatient' className='btn btn-large waves-effect waves-light green accent-4' onSubmit={this.handleAddForm} type='submit' value='Submit' >Add
                         <i className='material-icons right'>person_add</i>
                     </button>
                 </div>

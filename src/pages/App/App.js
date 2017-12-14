@@ -47,6 +47,7 @@ class App extends Component {
       headers: { Authorization: "Bearer " + tokenService.getToken() }
     })
     .then(res => {
+      console.log('Reload patients', res)
       this.setState({patients: res.data})
     });
   }
@@ -82,7 +83,10 @@ class App extends Component {
                   handleLogin={this.handleLogin} />
               }/>
               <Route exact path='/create/schedule' render={(props) =>
-                <ScheduleCreate />
+                <ScheduleCreate 
+                reloadPatients={this.reloadPatients}
+                patients={this.state.patients}
+                />
               }/>
               <Route exact path='/create/patients' render={(props) =>
                 <CreatePatient 

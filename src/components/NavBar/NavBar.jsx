@@ -18,7 +18,7 @@ const NavBar = (props) => {
   return (
     <div className='navbar-fixed'>
       <nav>
-        <div className='nav-wrapper'>
+        <div className='nav-wrapper blue-grey'>
         <Link className='brand-logo center' to="/">ScheduleME</Link>
         <ul id="nav-mobile" className="right hide-on-med-and-down">
         <li><a href="/create/patients">Manage Patients<i className="material-icons right">group</i></a></li>

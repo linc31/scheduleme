@@ -61,9 +61,13 @@ function removePatients(req, res) {
       if (err) {
         console.log(err);
       } else {
+        User.findById(req.user._id, function(err, user) {
+          user.patients.remove(req.user._id);
+          user.save();
         res.send(doc);
-      }
-  })
+      });
+    }
+  });
 }
 
 

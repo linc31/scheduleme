@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var patientSchema = new Schema ({
+  schedules: [{type: Schema.Types.ObjectId, ref: 'Schedule'}],  
   firstName: String,
   lastName: String,
   addressOne: String,
