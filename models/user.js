@@ -7,6 +7,7 @@ const SALT_ROUNDS = 6;
 
 var userSchema = new Schema({
   name: {type: String, required: true},
+  patients: [{type: Schema.Types.ObjectId, ref: 'Patient'}],
   email: {type: String, required: true, lowercase: true, unique: true},
   password: String
 }, {

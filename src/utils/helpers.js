@@ -1,4 +1,8 @@
-var axios = require("axios");
+import tokenService from './tokenService';
+// var axios = require("axios");
+import axios from 'axios';
+
+
 
 var helper = {
 
@@ -51,6 +55,8 @@ addPatient(firstName, lastName, addressOne, city, state, zip, email, phone, stat
     email: email,
     phone: phone,
     status: status
+  },  {
+    headers: { Authorization: "Bearer " + tokenService.getToken() }
   })
   .then(function(res) {
     console.log('coming from axios ADD PATIENT', res)
@@ -60,8 +66,8 @@ addPatient(firstName, lastName, addressOne, city, state, zip, email, phone, stat
   })
 },
 
-updatePatient(firstName, lastName, addressOne, city, state, zip, email, phone, status) {
-  return axios.put('/api/patients/updatePatient/', {
+updatePatient(id, firstName, lastName, addressOne, city, state, zip, email, phone, status) {
+  return axios.put('/api/patients/updatePatient/' + id, {
     firstName: firstName,
     lastName: lastName,
     addressOne: addressOne,

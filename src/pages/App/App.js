@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
+import axios from 'axios';
 import userService from '../../utils/userService';
+import tokenService from '../../utils/tokenService';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import HomePage from '../HomePage/HomePage';
 import DoctorPage from '../DoctorPage/DoctorPage';
@@ -16,7 +18,7 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-
+      patients: []
     }
   }
   // Callback Methods
@@ -37,6 +39,16 @@ class App extends Component {
   componentDidMount() {
     let user = userService.getUser();
     this.setState({user});
+    this.reloadPatients();
+  }
+
+  reloadPatients = () => {
+    axios.get('/api/patients/getPatients',  {
+      headers: { Authorization: "Bearer " + tokenService.getToken() }
+    })
+    .then(res => {
+      this.setState({patients: res.data})
+    });
   }
 
   render() {
@@ -73,7 +85,10 @@ class App extends Component {
                 <ScheduleCreate />
               }/>
               <Route exact path='/create/patients' render={(props) =>
-                <CreatePatient />
+                <CreatePatient 
+                  reloadPatients={this.reloadPatients}
+                  patients={this.state.patients}
+                />
               }/>
           </Switch>
           </div>

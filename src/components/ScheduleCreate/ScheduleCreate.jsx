@@ -108,17 +108,84 @@ class ScheduleCreate extends Component {
                   <th data-field='name'>Sunday</th>
                 </tr>
               </thead>
-              <tbody>
-              {/* {this.state.ptSchedules.map(sched => <tr key={sched._id}>
-                <td className='fullName' ref={this.state.ptSchedules[i]._id}>
-                {sched.firstName}{sched.lastName}</td>
-              </tr>)} */}
-              <td>
-                <div className='input-field schedule'>
-                  
-                </div>
-              </td>
-              </tbody>
+              {/* <tbody>
+              {this.state.ptSchedules.map(function(schedules, i) {
+              return (
+                  <tr key={i}>
+                      <td className="fullName">
+                          {schedules.firstName} {schedules.lastName}
+                      </td>
+                      <td className="schedule">
+                          {schedules.monday}
+                      </td>
+                      <td>
+                          {schedules.tuesday}
+                      </td>
+                      <td>
+                          {schedules.wednesday}
+                      </td>
+                      <td>
+                          {schedules.thursday}
+                      </td>
+                      <td>
+                          {schedules.friday}
+                      </td>
+                      <td>
+                          {schedules.saturday}
+                      </td>
+                      <td>
+                          {schedules.sunday}
+                      </td>
+                  </tr>
+              );
+          }, this)}
+          </tbody> */}
+          <td>
+            <div>
+              name here
+            </div>
+          </td>
+          <td>
+            <div>
+              monday 10am
+            </div>
+          </td>
+          <td>
+            <div>
+              tues 10am
+            </div>
+          </td>
+          <td>
+            <div>
+              weds 10am
+            </div>
+          </td>
+          <td>
+            <div>
+              sursday 10am
+            </div>
+          </td>
+          <td>
+            <div>
+              friyay 10am
+            </div>
+          </td>
+          <td>
+            <div>
+              satday 10am
+            </div>
+          </td>
+          <td>
+            <div>
+              sunday 10am
+            </div>
+          </td>
+          <td>
+            <button className="addSchedule" onClick={this.handleUpdatePatientSchedule.bind(this)} className="btn btn-small waves-effect waves-light green accent-4">Add</button>
+          </td>
+          <td>
+            <button className="clearSchedule" onClick={this.handleClearSchedule.bind(this)} className="btn btn-small waves-effect waves-light blue accent-4">Clear</button>
+          </td>
             </table>
           </div>
         </div>

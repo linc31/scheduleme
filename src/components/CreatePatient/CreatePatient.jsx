@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import helpers from '../../utils/helpers';
+import axios from 'axios';
+import {Link} from 'react-router-dom';
   
 class CreatePatient extends Component {
   constructor(props) {
     super(props);
-    this.state = {}
+    this.state = {};
   }
 
   getInitialState = () => {
@@ -24,21 +26,6 @@ class CreatePatient extends Component {
     }
   }
 
-  componentDidMount = () => {
-    this.getPatients();
-  }
-
-  // make fetch call then setState data
-  getPatients = () => {
-    helpers.getAllPatients().then(function(res) {
-      if (res !== this.state.allPatients) {
-        this.setState({ allPatients: res.data });
-        console.log('get patient page')
-        // this.activeButtons();
-      }
-    }.bind(this));
-  }
-
   handleUserChange = (event) => {
     this.setState({[event.target.name]: event.target.value});
   }
@@ -52,12 +39,10 @@ class CreatePatient extends Component {
       this.clearStates();
     }.bind(this))
     .then(function(res) {
-      this.state.patient_id = res.data._id;
-
+      this.props.reloadPatients();
     }.bind(this));
     // alert('Patient added', 3000);
     this.clearForm();
-    this.getPatients();
   }
 
   handleUpdateForm = (event) => {
@@ -66,13 +51,12 @@ class CreatePatient extends Component {
     // .then(function(res) {
     // }.bind(this))
 
-    helpers.updatePatientName(this.state.patient_id, this.state.firstName, this.state.lastName)
+    // helpers.updatePatientName(this.state.patient_id, this.state.firstName, this.state.lastName)
     .then(function(res) {
       this.clearStates();
     }.bind(this));
     // Materialize.toast('Patient updated', 3000);
     this.clearForm();
-    this.getPatients();
   }
 
   handleRemoveForm = (event) => {
@@ -84,7 +68,6 @@ class CreatePatient extends Component {
     }.bind(this));
     // Materialize.toast('Patient removed', 3000);
     this.clearForm();
-    this.getPatients();
   }
 
   clickPatient = (event) => {
@@ -124,7 +107,6 @@ class CreatePatient extends Component {
           elements[i].classList.remove('valid');
         }
       }
-      this.getPatients();
   }
 
   clearStates = () => {
@@ -146,6 +128,7 @@ class CreatePatient extends Component {
   activeButtons = () => {
     if (this.state.selectedPts === "") {
       this.refs.addPatient.setAttribute('class', 'highlight')
+      this.refs.updatePatient.setAttribute('class', 'highlight')
     }
   }
 
@@ -165,11 +148,18 @@ class CreatePatient extends Component {
                   <strong>New Patient<i className='material-icons'>add</i></strong>
                 </td>
               </tr>
-              {/* {this.state.allPatients.map(function(CreatePatient, i) {
+                {this.props.patients.map(pt =>
+                  <tr>
+                    <td><Link to={`updatePatient/${pt._id}`}>{pt.isbn}</Link></td>
+                    <td>{pt.firstName}</td>
+                    <td>{pt.lastName}</td>
+                  </tr>
+                )}
+              {/* {this.state.allPatients.map(function(pt, i) {
                 return (
                     <tr key={i}>
                         <td onClick={this.clickPatient} ref={this.state.allPatients[i]._id}>
-                            {CreatePatient.firstName} {CreatePatient.lastName}
+                            {pt.firstName} {pt.lastName}
                         </td>
                     </tr>
                 );

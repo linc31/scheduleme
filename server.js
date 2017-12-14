@@ -4,8 +4,6 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var session = require('express-session');
-var passport = require('passport');
 
 // Initialize express
 var app = express ();
@@ -13,12 +11,6 @@ var app = express ();
 // Connect to mongoDB
 require('dotenv').config();
 require('./config/database');
-require('./config/passport');
-
-
-// Require routes
-var oauth = require('./routes/oauth');
-
 
 app.use(logger('dev'));
 
@@ -32,13 +24,10 @@ app.use(bodyParser.json());
 
 // mount auth middleware
 app.use(require('./config/auth'));
-app.use(session({
-  secret: 'ScheduleMe',
-  resave: false,
-  saveUninitialized: true
-}));
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(function(req, res, next) {
+  console.log(req.user);
+  next();
+});
 
 // Mount patient route
 app.use('/api/patients', require('./routes/api/patients'))

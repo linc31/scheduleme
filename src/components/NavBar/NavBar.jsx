@@ -20,7 +20,7 @@ const NavBar = (props) => {
       <nav>
         <div className='nav-wrapper'>
         <Link className='brand-logo center' to="/">ScheduleME</Link>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <ul id="nav-mobile" className="right hide-on-med-and-down">
         <li><a href="/create/patients">Manage Patients<i className="material-icons right">group</i></a></li>
         <li><a href="/create/schedule">Schedule<i className="material-icons right">insert_invitation</i></a></li>
       </ul>

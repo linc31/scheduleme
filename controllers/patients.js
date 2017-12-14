@@ -1,4 +1,5 @@
 var Patient = require('../models/patient');
+var User = require('../models/user');
 
 module.exports = {
   addPatient,
@@ -23,14 +24,18 @@ function addPatient(req, res) {
     if (err) {
       console.log(err);
     } else {
-      res.status(200).json(doc);
+      User.findById(req.user._id, function(err, user) {
+        user.patients.push(doc._id);
+        user.save();
+        res.status(200).json(doc);
+      });
     }
   });
 }
 
 function updatePatient(req, res) {
   console.log('hitting UPDATE pt controller');  
-  Patient.findOneAndUpdate({ '_id': req.params.id }, {
+  Patient.findOneAndUpdate({ '_id': req.params._id }, {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     addressOne: req.body.addressOne,
@@ -63,11 +68,13 @@ function removePatients(req, res) {
 
 
 function getPatients(req, res) {
-  Patient.find({ "active": 1}, function(err, doc) {
-    if (err) {
-      console.log(err);
-    } else {
-      res.json(doc);
-    }
+  User.findById(req.user._id).then(user => {
+    Patient.find({ "active": 1, _id: user.patients}, function(err, doc) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.json(doc);
+      }
+    });
   });
 }
