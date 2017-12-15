@@ -20,6 +20,9 @@ Features:
 - Materialize
 - [Trello](https://trello.com/b/Ke66GJTk/scheduleme)
 
+# Unsolved Issues
+- Adding and saving schedules for each patient
+
 # Future Add-Ons
 - Live chat for patients to doctors
 - Send patient confirmation emails
