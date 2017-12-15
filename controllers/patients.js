@@ -60,22 +60,10 @@ function updatePatient(req, res) {
 }
 
 function removePatients(req, res) {
-  console.log('remove patient controller')
-  patient.findByIdAndRemove({ '_id.$oid': req.params.id }, {
-    'active': 0 })
-    .exec(function(err, doc) {
-      if (err) {
-        console.log(err);
-      } else {
-        User.findById(req.user._id, function(err, user) {
-          user.patients.remove(req.user._id);
-          user.save();
-        res.send(doc);
-      });
-    }
-  });
+  Patient.findByIdAndRemove(req.params.id, (err) => {
+    res.redirect('/create/patients')
+  })
 }
-
 
 function getPatients(req, res) {
   User.findById(req.user._id).then(user => {
