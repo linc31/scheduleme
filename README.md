@@ -21,9 +21,9 @@ Features:
 - [Trello](https://trello.com/b/Ke66GJTk/scheduleme)
 
 # Future Add-Ons
-- Stripe integration for check
-- Google & Facebook login
-- Transaction emails
+- Live chat for patients to doctors
+- Send patient confirmation emails
+- Implement monthly views
 
 # Demo the app
 Demo [ScheduleMe](https://schedule-mee.herokuapp.com/)
