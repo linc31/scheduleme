@@ -189,7 +189,7 @@ class CreatePatient extends Component {
                     value={this.state.addressOne}
                     onChange={this.handleUserChange}
                     required />
-                </div>
+                </div> 
               </div>
               <div className='row'>
                 <div className='input-field col s4'>
