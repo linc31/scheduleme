@@ -40,6 +40,7 @@ class App extends Component {
     let user = userService.getUser();
     this.setState({user});
     this.reloadPatients();
+    this.reloadSchedules();
   }
 
   reloadPatients = () => {
@@ -49,6 +50,16 @@ class App extends Component {
     .then(res => {
       console.log('Reload patients', res)
       this.setState({patients: res.data})
+    });
+  }
+
+  reloadSchedules = () => {
+    axios.get('/api/patients/getPatientSchedules',  {
+      headers: { Authorization: "Bearer " + tokenService.getToken() }
+    })
+    .then(res => {
+      console.log('Reload patients schedule', res)
+      this.setState({schedules: res.data})
     });
   }
 

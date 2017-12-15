@@ -7,8 +7,7 @@ import axios from 'axios';
 var helper = {
 
 getAllPatients() {
-  return axios.get('/api/patients/getAllPatients');
-  console.log('coming from axios GET ALL PATIENTS')
+  return axios.get('/api/patients/getAllPatients')
   .then(function(res) {
     res.json(res);
   })
@@ -89,7 +88,6 @@ updatePatient(id, firstName, lastName, addressOne, city, state, zip, email, phon
     headers: { Authorization: "Bearer " + tokenService.getToken() }
   })
   .then(function(res) {
-    console.log('axios UPDATE PATIENT', res)
   })
   .catch(function(err){
     console.log(err)
@@ -111,9 +109,14 @@ updatePatientName(patient_id, firstName, lastName) {
 },
 
 removePatient(id) {
-  return axios.put('/api/patients/removePatient/' + id, {
+  return axios.delete('/api/patients/removePatient/' + id, {
     headers: { Authorization: "Bearer " + tokenService.getToken() }
-  });
+  }).then(function(res) {
+    console.log('axios DELETE PATIENT', res)
+  })
+  .catch(function(err){
+    console.log(err)
+  })
 }, 
 
 removePatientSchedule(patient_id) {

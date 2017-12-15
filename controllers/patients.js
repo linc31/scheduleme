@@ -60,7 +60,8 @@ function updatePatient(req, res) {
 }
 
 function removePatients(req, res) {
-  patient.findOneAndRemove({ '_id.$oid': req.params.id }, {
+  console.log('remove patient controller')
+  patient.findByIdAndRemove({ '_id.$oid': req.params.id }, {
     'active': 0 })
     .exec(function(err, doc) {
       if (err) {

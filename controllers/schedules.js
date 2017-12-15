@@ -31,9 +31,13 @@ function addSchedules(req, res) {
     if (err) {
       console.log(err);
     } else {
+      User.findById(req.user._id, function(err, user) {
+        user.patients.push(doc._id);
+        user.save();
       res.send('Schedule saved');
-    }
-  })
+    });
+  }
+});
 }
 
 function updateSchedules(req, res) {

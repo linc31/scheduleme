@@ -6,7 +6,7 @@ import './HomePage.css';
 const HomePage = (props) => {
   return (
     <div>
-      <img src={'https://images.unsplash.com/photo-1476370648495-3533f64427a2?auto=format&fit=crop&w=3300&q=80&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D'} />
+      <img src={'https://images.unsplash.com/photo-1503429888457-07726f9469ba?auto=format&fit=crop&w=3302&q=80&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D'} />
     </div>
   )
 }

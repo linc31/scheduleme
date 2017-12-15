@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
 import helpers from '../../utils/helpers';
-import axios from 'axios';
-import {Link} from 'react-router-dom';
   
 class CreatePatient extends Component {
   constructor(props) {
@@ -50,7 +48,6 @@ class CreatePatient extends Component {
       this.handleSubmit();
       this.clearStates();
     })
-    // alert('Patient added', 3000);
   }
 
   handleUpdateForm = (event) => {
@@ -62,29 +59,20 @@ class CreatePatient extends Component {
     .then(function(res) {
       this.clearStates();
     }.bind(this));
-    // alert('Patient added', 3000);
     this.clearForm();
   }
-    // .then(function(res) {
-    // }.bind(this))
-
-    // helpers.updatePatientName(this.state.patient_id, this.state.firstName, this.state.lastName)
-  //   .then(function(res) {
-  //     this.clearStates();
-  //   }.bind(this));
-  //   // Materialize.toast('Patient updated', 3000);
-  //   this.clearForm();
-  // }
-
+ 
   handleRemoveForm = (event) => {
     event.preventDefault();
-    helpers.removePatient(this.state.selectedPts).then(function(res) {
-    }.bind(this));
-    helpers.removePatientSchedule(this.state.patient_id).then(function(res) {
-      this.clearStates();
-    }.bind(this));
-    this.clearForm();
-  }
+    helpers.removePatient(this.state.selectedPts)
+      .then((res) => {
+        this.props.reloadPatients();
+      })
+      .then(res => {
+        this.handleSubmit();
+        this.clearStates();
+      })
+    }
 
   clickPatient = (event, id) => {
     this.setState({selectedPts: event.target.id}, function() {
@@ -113,7 +101,6 @@ class CreatePatient extends Component {
   newPatient = () => {
     this.clearForm();
     this.clearStates();
-    // this.activeButtons();
   }
 
   clearForm = () => {
@@ -142,14 +129,6 @@ class CreatePatient extends Component {
     })
   }
 
-  // Restrict access to update or remove an empty form
-  // activeButtons = () => {
-  //   if (this.state.selectedPts === "") {
-  //     this.refs.addPatient.setAttribute('class', 'highlight')
-  //     this.refs.updatePatient.setAttribute('class', 'highlight')
-  //   }
-  // }
-
   render(props) {
     return (
       <div className='row'>
@@ -166,16 +145,12 @@ class CreatePatient extends Component {
                   <strong>New Patient<i className='material-icons'>add</i></strong>
                 </td>
               </tr>
-
-
-                {this.props.patients.map(pt =>
+                {this.props.patients.map((pt) =>
                   <tr>
                     <td key={pt._id} onClick={(e) => { this.clickPatient(e, pt._id) }}>
                       {pt.firstName} {pt.lastName}</td>
                   </tr>
                 )}
-
-
             </tbody>
           </table>
         </div>

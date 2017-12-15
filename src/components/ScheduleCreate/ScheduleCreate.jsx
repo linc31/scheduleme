@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import helpers from '../../utils/helpers';
-import {Link} from 'react-router-dom';
 
 class ScheduleCreate extends Component {
   constructor(props) {
@@ -46,9 +45,9 @@ class ScheduleCreate extends Component {
     this.setState({ptSchedules: updatePatientSchedules});
     }
 
-  handleUpdatePatientSchedule = (event) => {
+  handleAddPatientSchedule = (event) => {
     if (this.state.selectedPtSchedule !== "") {
-      helpers.updatePatientSchedule(this.state.selectedPtSchedule)
+      helpers.addPatientSchedule(this.state.selectedPtSchedule)
       .then(function(res) {
         var ptName = this.state.selectedPtSchedule.firstName + ' ' + this.state.selectedPtSchedule.lastName + ' ';
         alert(ptName + 'schedule updated');
@@ -122,43 +121,43 @@ class ScheduleCreate extends Component {
           {/* </td> */}
           <td className="">
             <div className="input-field schedule">
-              <input type='text' className='timepicker' name='on' type='time' onChange={function(e, value) {}} />
+              <input type='text' className='timepicker' name='monday' type='time' onChange={this.handleUserChange} />
             </div>
           </td>
           <td className="">
           <div className="input-field schedule">
-            <input type='text' className='timepicker' name='on' type='time' onChange={function(e, value) {}} />
+            <input type='text' className='timepicker' name='tuesday' type='time' onChange={this.handleUserChange} />
           </div>
           </td>
           <td className="">
           <div className="input-field schedule">
-            <input type='text' className='timepicker' name='on' type='time' onChange={function(e, value) {}} />
+            <input type='text' className='timepicker' name='wednesday' type='time' onChange={this.handleUserChange} />
           </div>
           </td>
           <td className="">
           <div className="input-field schedule">
-            <input type='text' className='timepicker' name='on' type='time' onChange={function(e, value) {}} />
+            <input type='text' className='timepicker' name='thursday' type='time' onChange={this.handleUserChange} />
           </div>
           </td>
           <td className="">
           <div className="input-field schedule">
-            <input type='text' className='timepicker' name='on' type='time' onChange={function(e, value) {}} />
+            <input type='text' className='timepicker' name='friday' type='time' onChange={this.handleUserChange} />
           </div>
           </td>
           <td className="">
           <div className="input-field schedule">
-            <input type='text' className='timepicker' name='on' type='time' onChange={function(e, value) {}} />
+            <input type='text' className='timepicker' name='saturday' type='time' onChange={this.handleUserChange} />
           </div>
           </td>
           <td className="">
           <div className="input-field schedule">
-            <input type='text' className='timepicker' name='on' type='time' onChange={function(e, value) {}} />
+            <input type='text' className='timepicker' name='sunday' type='time' onChange={this.handleUserChange} />
           </div>
           </td>
           
           <td>
           &nbsp;&nbsp;&nbsp;&nbsp;
-            <button className="addSchedule" onClick={this.handleUpdatePatientSchedule.bind(this)} className="btn btn-small waves-effect waves-light green accent-4">Add</button>
+            <button className="addSchedule" onClick={this.handleAddPatientSchedule.bind(this)} className="btn btn-small waves-effect waves-light green accent-4">Add</button>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button className="clearSchedule" onClick={this.handleClearSchedule.bind(this)} className="btn btn-small waves-effect waves-light blue accent-4">Clear</button>
           </td>
