@@ -35,7 +35,7 @@ function addPatient(req, res) {
 
 function updatePatient(req, res) {
   console.log('hitting UPDATE pt controller');  
-  Patient.findOneAndUpdate({ '_id': req.params._id }, {
+  Patient.findOneAndUpdate({ '_id.$oid': req.params._id }, {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     addressOne: req.body.addressOne,
@@ -60,7 +60,7 @@ function updatePatient(req, res) {
 }
 
 function removePatients(req, res) {
-  patient.findOneAndRemove({ '_id': req.params.id }, {
+  patient.findOneAndRemove({ '_id.$oid': req.params.id }, {
     'active': 0 })
     .exec(function(err, doc) {
       if (err) {
